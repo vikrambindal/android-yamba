@@ -9,7 +9,7 @@ public class TweetCRUDActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tweet_crud);
+        setContentView(R.layout.tweet_crud_activity);        
     }
 
     @Override
