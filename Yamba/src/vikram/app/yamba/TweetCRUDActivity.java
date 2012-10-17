@@ -1,8 +1,11 @@
 package vikram.app.yamba;
 
+import vikram.app.yamba.prefs.PrefsActivity;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class TweetCRUDActivity extends Activity {
 
@@ -18,5 +21,13 @@ public class TweetCRUDActivity extends Activity {
         return true;
     }
 
-    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch(item.getItemId()){
+    		case R.id.menu_settings:
+    			startActivity(new Intent(this, PrefsActivity.class));
+    			break;
+    	}
+    	return true;
+    }
 }

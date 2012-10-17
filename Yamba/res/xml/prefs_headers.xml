@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<preference-headers
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <header android:fragment="vikram.app.yamba.prefs.PrefsActivity$PrefsLoginFragment"
+            android:title="Account Settings"
+            android:summary="Provide account information" />
+
+    <header android:fragment="vikram.app.yamba.prefs.PrefsActivity$PrefsSettingsFragment"
+            android:title="Settings"
+            android:summary="Provide Application Settings">
+    </header>
+
+</preference-headers>

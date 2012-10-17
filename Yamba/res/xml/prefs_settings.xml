@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory
+        android:summary="@string/prefCategory_SettingsSummary"
+        android:title="@string/prefCategory_Settings" >
+        <EditTextPreference
+            android:key="apiURL"
+            android:summary="@string/titleURLSummary"
+            android:title="@string/titleURL" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

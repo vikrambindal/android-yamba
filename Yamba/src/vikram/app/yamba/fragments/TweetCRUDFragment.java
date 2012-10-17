@@ -1,11 +1,14 @@
 package vikram.app.yamba.fragments;
 
 import vikram.app.yamba.R;
+import winterwell.jtwitter.Twitter;
 import android.app.Fragment;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,12 +16,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickListener {
 
+	private static final String TAG = "TweetCRUDFragment";
 	private EditText msgTxt;
 	private Button postBtn;
 	private TextView charsRemTxt;
+	private Twitter twitter;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,11 +37,16 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 		
 		msgTxt.addTextChangedListener(this);
 		postBtn.setOnClickListener(this);
+		twitter = new Twitter("vikram", "friends12345");
+		twitter.setAPIRootUrl("http://yamba.marakana.com/api");
 		return view;
 	}
 
 	public void onClick(View view) {
+		Log.d(TAG, "onClick");
 		String message = msgTxt.getText().toString();
+		new PostToTwitter().execute(message);
+		
 	}
 	
 	public void afterTextChanged(Editable editableText) {
@@ -52,5 +63,20 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 	}
 
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+	}
+	
+	class PostToTwitter extends AsyncTask<String, Integer, String>{
+
+		@Override
+		protected String doInBackground(String... params) {
+			Twitter.Status updateStatus = twitter.updateStatus(params[0]);
+			return updateStatus.getText();
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+		}		
+		
 	}
 }
