@@ -1,6 +1,7 @@
 package vikram.app.yamba.fragments;
 
 import vikram.app.yamba.R;
+import vikram.app.yamba.YambaApplication;
 import winterwell.jtwitter.Twitter;
 import android.app.Fragment;
 import android.graphics.Color;
@@ -24,7 +25,12 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 	private EditText msgTxt;
 	private Button postBtn;
 	private TextView charsRemTxt;
-	private Twitter twitter;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		
+	}
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,8 +43,6 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 		
 		msgTxt.addTextChangedListener(this);
 		postBtn.setOnClickListener(this);
-		twitter = new Twitter("vikram", "friends12345");
-		twitter.setAPIRootUrl("http://yamba.marakana.com/api");
 		return view;
 	}
 
@@ -69,7 +73,8 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 
 		@Override
 		protected String doInBackground(String... params) {
-			Twitter.Status updateStatus = twitter.updateStatus(params[0]);
+			YambaApplication application = (YambaApplication)getActivity().getApplication();
+			Twitter.Status updateStatus = application.getTwitter().updateStatus(params[0]);
 			return updateStatus.getText();
 		}
 

@@ -16,5 +16,7 @@
     <string name="prefCategory_LoginInfoSummary">Enter your credentials</string>
     <string name="prefCategory_Settings">Settings</string>
     <string name="prefCategory_SettingsSummary">Basic application settings</string>
+    <string name="titleServiceStart">Start</string>
+    <string name="titleServiceStop">Stop</string>
 
 </resources>
