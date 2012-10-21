@@ -2,6 +2,7 @@ package vikram.app.yamba.fragments;
 
 import vikram.app.yamba.R;
 import vikram.app.yamba.YambaApplication;
+import vikram.app.yamba.db.YambaDAOImpl;
 import winterwell.jtwitter.Twitter;
 import android.app.Fragment;
 import android.graphics.Color;
@@ -25,11 +26,12 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 	private EditText msgTxt;
 	private Button postBtn;
 	private TextView charsRemTxt;
+	private YambaDAOImpl yambaDAOImpl;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		yambaDAOImpl = new YambaDAOImpl(getActivity());
 	}
 	
 	@Override
@@ -69,18 +71,19 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
 	}
 	
-	class PostToTwitter extends AsyncTask<String, Integer, String>{
+	class PostToTwitter extends AsyncTask<String, Integer, Twitter.Status>{
 
 		@Override
-		protected String doInBackground(String... params) {
+		protected Twitter.Status doInBackground(String... params) {
 			YambaApplication application = (YambaApplication)getActivity().getApplication();
 			Twitter.Status updateStatus = application.getTwitter().updateStatus(params[0]);
-			return updateStatus.getText();
+			return updateStatus;
 		}
 
 		@Override
-		protected void onPostExecute(String result) {
-			Toast.makeText(getActivity(), result, Toast.LENGTH_LONG).show();
+		protected void onPostExecute(Twitter.Status status) {
+			yambaDAOImpl.saveMsg(status);
+			Toast.makeText(getActivity(), status.text + " posted sucessfully", Toast.LENGTH_LONG).show();
 		}		
 		
 	}
