@@ -16,9 +16,10 @@
     <string name="prefCategory_LoginInfoSummary">Enter your credentials</string>
     <string name="prefCategory_Settings">Settings</string>
     <string name="prefCategory_SettingsSummary">Basic application settings</string>
-    <string name="titleServiceStart">Start</string>
-    <string name="titleServiceStop">Stop</string>
+    <string name="titleServiceStart">Start Alerts</string>
+    <string name="titleServiceStop">Stop Alerts</string>
     <string name="titleNewTweet">New Tweet</string>
+    <string name="titleListTweet">View Tweets</string>
     <string name="lbl_list_title">Timeline</string>
 
 </resources>

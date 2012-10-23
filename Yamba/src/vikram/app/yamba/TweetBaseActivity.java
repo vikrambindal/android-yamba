@@ -25,7 +25,7 @@ public class TweetBaseActivity extends Activity {
     			Log.d(TAG, "starting Pref Activity");
     			startActivity(new Intent(this, PrefsActivity.class));
     			break;
-    		case R.id.itemServiceStart:
+    		case R.id.itemToggleService:
     			if(((YambaApplication)getApplication()).isServiceRunning()){
     				Log.d(TAG, "Stopping UpdaterService");
         			stopService(new Intent(this, UpdaterService.class));
@@ -38,6 +38,23 @@ public class TweetBaseActivity extends Activity {
     			Log.d(TAG, "Starting TweetCRUD");
     			startActivity(new Intent(this, TweetCRUDActivity.class));
     			break;
+    		case R.id.itemTweetList:
+    			Log.d(TAG, "Starting TweetList");
+    			startActivity(new Intent(this, TweetListActivity.class));
+    			break;
+    	}
+    	return true;
+    }
+    
+    @Override
+    public boolean onMenuOpened(int featureId, Menu menu) {
+    	MenuItem menuItem = menu.findItem(R.id.itemToggleService);
+    	if(((YambaApplication)getApplication()).isServiceRunning()){
+    		menuItem.setTitle(R.string.titleServiceStop);
+    		menuItem.setIcon(android.R.drawable.ic_media_pause);
+    	}else{
+    		menuItem.setTitle(R.string.titleServiceStart);
+    		menuItem.setIcon(android.R.drawable.ic_media_play);
     	}
     	return true;
     }
