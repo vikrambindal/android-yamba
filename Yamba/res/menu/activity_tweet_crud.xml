@@ -10,8 +10,8 @@
         android:icon="@android:drawable/ic_media_play"
         android:title="@string/titleServiceStart"/>
     <item
-        android:id="@+id/itemServiceStop"
+        android:id="@+id/itemTweetCRUD"
         android:icon="@android:drawable/ic_media_play"
-        android:title="@string/titleServiceStop"/>
+        android:title="@string/titleNewTweet"/>
 
 </menu>

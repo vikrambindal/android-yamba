@@ -83,7 +83,8 @@ public class TweetCRUDFragment extends Fragment implements TextWatcher, OnClickL
 		@Override
 		protected void onPostExecute(Twitter.Status status) {
 			yambaDAOImpl.saveMsg(status);
-			Toast.makeText(getActivity(), status.text + " posted sucessfully", Toast.LENGTH_LONG).show();
+			msgTxt.setText("");
+			Toast.makeText(getActivity(), "Mesasge posted sucessfully", Toast.LENGTH_LONG).show();
 		}		
 		
 	}

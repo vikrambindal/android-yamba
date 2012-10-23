@@ -18,5 +18,7 @@
     <string name="prefCategory_SettingsSummary">Basic application settings</string>
     <string name="titleServiceStart">Start</string>
     <string name="titleServiceStop">Stop</string>
+    <string name="titleNewTweet">New Tweet</string>
+    <string name="lbl_list_title">Timeline</string>
 
 </resources>
